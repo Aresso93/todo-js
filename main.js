@@ -50,7 +50,7 @@ function render() {
   }
 
 
-
+  
 
 }
 
@@ -59,9 +59,11 @@ function addTodo(){
     let input = document.getElementById("title-input").value;
 
     if (input !== '') {
-      return manager.addTodoWithTitle(input);
+      manager.addTodoWithTitle(input);
     }
     render();
+
+    
 }
 //questo metodo alternativo sotto scrive l'HTML come stringhe all'interno del ciclo, ma document le andrà a inserire nell'HTML scrivendo di fatto HTML con tutti i tag funzionanti
 

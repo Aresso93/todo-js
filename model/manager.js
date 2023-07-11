@@ -31,7 +31,7 @@ class Manager {
 
     
 
-    console.log('ciao');
+    console.log('Task aggiunto!');
 
     render();
 
@@ -39,17 +39,23 @@ class Manager {
 
   }
 
-  static fromDbObject(){
+  static fromDbObject(data){
 
     const tempArray = [];
-    const todo = new ToDo(title, isCompleted, creationDate);
-    tempArray.push(todo);
 
-    const newManager = new Manager(tempArray);
-    return newManager;
-  }
+    for (const genericObject of data) {
+        
+        if(genericObject){
 
+            const todo = new ToDo(genericObject.title, genericObject.isCompleted, genericObject.creationDate);
+            tempArray.push(todo);
+        } 
+    }
 
+    const newCellar = new Cellar(tempArray);
+
+    return newCellar;
+}
 
 
 }

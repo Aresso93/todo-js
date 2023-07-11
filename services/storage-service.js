@@ -7,7 +7,7 @@ class Storage{
 
     }
 
-    static loadData(){
+    static loadData(data){
 
         const dataString = localStorage.getItem('Task')
         if (dataString){
