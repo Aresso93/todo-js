@@ -1,5 +1,17 @@
 class DataService{
 
+constructor(){
+
+    const data = Storage.loadData();
+    if (data !== null){
+       manager = Manager.fromDbObject(data);
+    } else {
+        manager = new Manager();
+    }
+
+}
+
+
 static getData(){
 
 const todo1 = new ToDo('Comprare il latte', false, new Date(2023, 6, 9))

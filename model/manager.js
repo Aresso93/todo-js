@@ -6,7 +6,7 @@ class Manager {
   addToDo(todo){
 
     this.todosArray.push(todo);
-
+    Storage.saveData(todo);
   }
 
   orderTodosByTitle(){
@@ -20,7 +20,7 @@ class Manager {
   deleteTodo(index){
 
   this.todosArray.splice(index, 1);
-
+  Storage.saveData(this.todo);
   }
 
   addTodoWithTitle(title){
@@ -35,7 +35,22 @@ class Manager {
 
     render();
 
+    Storage.saveData(todo);
+
   }
+
+  static fromDbObject(){
+
+    const tempArray = [];
+    const todo = new ToDo(title, isCompleted, creationDate);
+    tempArray.push(todo);
+
+    const newManager = new Manager(tempArray);
+    return newManager;
+  }
+
+
+
 
 }
 
