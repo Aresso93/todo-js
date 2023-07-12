@@ -35,7 +35,7 @@ class Manager {
 
     render();
 
-    Storage.saveData(todo);
+    //Storage.saveData(todo);
 
   }
 

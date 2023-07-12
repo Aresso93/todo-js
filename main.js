@@ -56,10 +56,11 @@ function render() {
 
 
 function addTodo(){
-    let input = document.getElementById("title-input").value;
-
-    if (input !== '') {
-      manager.addTodoWithTitle(input);
+    let inputValue = document.getElementById('title-input').value;
+    console.log(inputValue);
+    if (inputValue.trim() !== '') {                         //il trim fa sì che mettere un task di soli spazi funzioni
+      manager.addTodoWithTitle(inputValue);
+      document.getElementById('title-input').value = '';
     }
     render();
 

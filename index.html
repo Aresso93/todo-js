@@ -12,15 +12,20 @@
         <h1>To do list</h1>
     </header>
     <main>
-        <div>
-            <button onclick="orderByTitle()">Ordina per nome</button>
-            <button onclick="orderByDate()">Ordina per data</button>
-        </div>
-        <div id = "todo-container">
+        <!-- <div> -->
+            <div>
+                <button onclick="orderByTitle()">Ordina per nome</button>
+                <button onclick="orderByDate()">Ordina per data</button>
+            </div>
+            <div id = "todo-container">
+    
+            </div> 
+        <!-- </div> -->
+        
+            <div class = "spacer"> <!--questo div a cui ho dato flex = 1 può espandersi quanto vuole, per cui schiaccia gli altri due in alto e in basso, rispettivamente-->
 
-        </div>
-
-        <div>
+            </div>
+        <div class = "add-todo-container">
             <input type="text" id="title-input">
             <button onclick="addTodo()">Aggiungi to do</button>
         </div>

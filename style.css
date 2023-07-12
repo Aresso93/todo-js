@@ -1,6 +1,6 @@
 .todo-card{
 
-    border: 3px solid crimson;
+    border: 5px solid crimson;
     display: flex;
     flex-direction: column;
     padding: 8px;
@@ -11,11 +11,35 @@
 .todo-completed{
 
     border-color: lime;
+    align-items: flex-end;
 
 }
 
 body{
-
     background-color: rgba(192, 187, 171, 0.836);
+    height: 100vh;
+    margin: 0px;
+}
 
+header h1{
+    margin: 0px;
+    
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    justify-content: space-between;           /*con questo space between tra i due div, faccio lo spazio verticaler per mettere l'input in basso*/
+}
+
+
+.spacer{
+    flex: 1;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    height: 10%;
 }
