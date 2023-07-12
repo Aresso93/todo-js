@@ -48,23 +48,7 @@ class Manager {
 
   }
 
-  static fromDbObject(data){
-
-    const tempArray = [];
-
-    for (const genericObject of data) {
-        
-        if(genericObject){
-
-            const todo = new ToDo(genericObject.title, genericObject.isCompleted, genericObject.creationDate);
-            tempArray.push(todo);
-        } 
-    }
-
-    const newCellar = new Cellar(tempArray);
-
-    return newCellar;
-}
+  
 
 changeCompleteStatus(index){
 
