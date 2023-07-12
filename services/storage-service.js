@@ -1,4 +1,6 @@
-class Storage{
+class StorageService{
+
+
 
     static saveData(data){
 
@@ -7,12 +9,20 @@ class Storage{
 
     }
 
-    static loadData(data){
+    static loadTodos(){
 
-        const dataString = localStorage.getItem('Task')
+        const dataString = localStorage.getItem('Task');
         if (dataString){
-            const data = JSON.parse(dataString)
-            return data;
+            const data = JSON.parse(dataString);
+
+            const tempArray = [];
+            for (const object of data) {
+               const newTodo = new ToDo(object.title, object.isCompleted, new Date(object.creationDate));
+               tempArray.push(newTodo);
+     
+            }
+
+            return tempArray;
         }
         return null;
     }

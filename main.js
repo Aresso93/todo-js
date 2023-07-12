@@ -1,5 +1,15 @@
-const todos = DataService.getData();
-const manager = new Manager(todos);
+//const todos = DataService.getData();
+//const todos = StorageService.loadTodos();
+
+// let manager;
+// if (todos){
+//   manager = new Manager(todos);
+// } else {
+//   manager = new Manager();
+// }
+
+
+let manager = new Manager();
 
 function render() {
   const todosContainer = document.getElementById("todo-container");
@@ -33,11 +43,14 @@ function render() {
 
     deleteBtn.addEventListener("click", () => {
       manager.deleteTodo(i);
+      // StorageService.saveData(manager.todosArray);
       render();
     });
 
     completeBtn.addEventListener("click", () => {
-      todo.isCompleted = true; //questo si legge così: sul click, invoca una funzione vuota che fa diventare true "isCompleted"
+      manager.changeCompleteStatus(i);
+      //todo.isCompleted = true; //questo si legge così: sul click, invoca una funzione vuota che fa diventare true "isCompleted"
+      StorageService.saveData(manager.todosArray);
       render();
     });
     completeBtn.appendChild(completeNode);
@@ -60,6 +73,7 @@ function addTodo(){
     console.log(inputValue);
     if (inputValue.trim() !== '') {                         //il trim fa sì che mettere un task di soli spazi funzioni
       manager.addTodoWithTitle(inputValue);
+      // StorageService.saveData(manager.todosArray);
       document.getElementById('title-input').value = '';
     }
     render();

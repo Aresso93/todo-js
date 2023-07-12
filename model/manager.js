@@ -1,12 +1,21 @@
 class Manager {
-  constructor(todosArray = []) {
-    this.todosArray = todosArray;
+  constructor(todosArray) {
+    if (!todosArray) {
+      const todosArray = StorageService.loadTodos();
+      if (todosArray) {
+        this.todosArray = todosArray;
+      } else {
+        this.todosArray = [];
+      }
+    } else {
+      this.todosArray = todosArray;
+    }
   }
 
   addToDo(todo){
 
     this.todosArray.push(todo);
-    Storage.saveData(todo);
+
   }
 
   orderTodosByTitle(){
@@ -20,7 +29,7 @@ class Manager {
   deleteTodo(index){
 
   this.todosArray.splice(index, 1);
-  Storage.saveData(this.todo);
+  StorageService.saveData(manager.todosArray);
   }
 
   addTodoWithTitle(title){
@@ -34,7 +43,7 @@ class Manager {
     console.log('Task aggiunto!');
 
     render();
-
+    StorageService.saveData(manager.todosArray);
     //Storage.saveData(todo);
 
   }
@@ -57,6 +66,13 @@ class Manager {
     return newCellar;
 }
 
+changeCompleteStatus(index){
+
+  const todo = this.todosArray[index];
+  todo.isCompleted = !todo.isCompleted;
+  StorageService.saveData(this.todosArray);
+
+}
 
 }
 
