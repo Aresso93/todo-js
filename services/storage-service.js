@@ -28,3 +28,5 @@ class StorageService{
     }
 
 }
+
+//esiste anche il modo di salvare le cose ogni tot secondi, usando la funzione setInterval, il suo utilizzo dipende dal tipo di programma che voglio fare
