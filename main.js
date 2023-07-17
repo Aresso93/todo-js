@@ -9,7 +9,12 @@
 // }
 
 
-let manager = new Manager();
+let manager;
+
+DBService.getAllTodos().then(todos =>{
+  manager = new Manager(todos);
+  render();
+})
 
 function render() {
   const todosContainer = document.getElementById("todo-container");
@@ -42,9 +47,13 @@ function render() {
     const deleteNode = document.createTextNode("Cancella");
 
     deleteBtn.addEventListener("click", () => {
-      manager.deleteTodo(i);
+      
+      DBService.deleteToDo(todo.id).then(() => {
+        manager.deleteTodo(i);
       // StorageService.saveData(manager.todosArray);
       render();
+      })
+      
     });
 
     completeBtn.addEventListener("click", () => {
@@ -106,7 +115,7 @@ function addTodo(){
 
 // }
 
-render();
+
 
 function orderByTitle() {
   console.log("Order by name");

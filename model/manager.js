@@ -1,15 +1,16 @@
 class Manager {
-  constructor(todosArray) {
-    if (!todosArray) {
-      const todosArray = StorageService.loadTodos();
-      if (todosArray) {
-        this.todosArray = todosArray;
-      } else {
-        this.todosArray = [];
-      }
-    } else {
-      this.todosArray = todosArray;
-    }
+  constructor(todosArray = []) {
+    // if (!todosArray) {
+    //   const todosArray = StorageService.loadTodos();
+    //   if (todosArray) {
+    //     this.todosArray = todosArray;
+    //   } else {
+    //     this.todosArray = [];
+    //   }
+    // } else {
+    //   this.todosArray = todosArray;
+    // }
+    this.todosArray = todosArray;
   }
 
   addToDo(todo){
@@ -27,9 +28,9 @@ class Manager {
   }
 
   deleteTodo(index){
-
-  this.todosArray.splice(index, 1);
-  StorageService.saveData(manager.todosArray);
+   
+    this.todosArray.splice(index, 1);
+  //StorageService.saveData(manager.todosArray);
   }
 
   addTodoWithTitle(title){
