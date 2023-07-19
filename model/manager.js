@@ -13,7 +13,7 @@ class Manager {
     this.todosArray = todosArray;
   }
 
-  addToDo(todo){
+  addTodo(todo){
 
     this.todosArray.push(todo);
 

@@ -43,6 +43,7 @@ function render() {
     const completeBtn = document.createElement("button"); //questo mette un bottone da premere per completare
     const completeNode = document.createTextNode("Completato"); //questo mette il testo al bottone
 
+
     const deleteBtn = document.createElement("button");
     const deleteNode = document.createTextNode("Cancella");
 
@@ -57,10 +58,17 @@ function render() {
     });
 
     completeBtn.addEventListener("click", () => {
-      manager.changeCompleteStatus(i);
+      const modifiedTodo = {...todo};
+      modifiedTodo.isCompleted = !modifiedTodo.isCompleted;
+      DBService.updateToDo(modifiedTodo).then(res => {
+        manager.changeCompleteStatus(i);
+        render();
+      })
+
+      
       //todo.isCompleted = true; //questo si legge così: sul click, invoca una funzione vuota che fa diventare true "isCompleted"
-      StorageService.saveData(manager.todosArray);
-      render();
+      // StorageService.saveData(manager.todosArray);
+ 
     });
     completeBtn.appendChild(completeNode);
     div.appendChild(completeBtn);
@@ -78,16 +86,19 @@ function render() {
 
 
 function addTodo(){
-    let inputValue = document.getElementById('title-input').value;
-    console.log(inputValue);
-    if (inputValue.trim() !== '') {                         //il trim fa sì che mettere un task di soli spazi funzioni
-      manager.addTodoWithTitle(inputValue);
-      // StorageService.saveData(manager.todosArray);
-      document.getElementById('title-input').value = '';
-    }
-    render();
+  const input = document.getElementById('title-input');
+  const newTodoTitle = input.value;
+    if (newTodoTitle.trim() !== '') {
+      const newTodo = new ToDo(newTodoTitle, false, new Date());
+    
+      DBService.saveTodo(newTodo).then(res => {
+        manager.addTodo(res);
+        input.value = '';
+        render();
+      })
 
     
+}
 }
 //questo metodo alternativo sotto scrive l'HTML come stringhe all'interno del ciclo, ma document le andrà a inserire nell'HTML scrivendo di fatto HTML con tutti i tag funzionanti
 
